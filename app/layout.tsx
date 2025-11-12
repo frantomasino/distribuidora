@@ -16,9 +16,9 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: "Consultora Empresarial | Impulsa tu Crecimiento",
+  title: "Distribuiora  | Impulsa tu Crecimiento",
   description:
-    "Consultoría estratégica para PYMEs en crecimiento. Transformamos tu negocio con soluciones profesionales y resultados medibles.",
+    "Distribuidora , desde 2010 ofrece soluciones.",
   generator: "v0.app",
 }
 
