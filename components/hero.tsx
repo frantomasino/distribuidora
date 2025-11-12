@@ -20,7 +20,7 @@ export function Hero() {
             {/* Logo simulado */}
             <div className="mb-8 flex justify-center">
               <div className="w-32 h-32 bg-primary rounded-lg flex items-center justify-center">
-                <span className="text-4xl font-bold text-primary-foreground">C</span>
+                <span className="text-4xl font-bold text-primary-foreground">D</span>
               </div>
             </div>
 
