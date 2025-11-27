@@ -15,7 +15,7 @@ export function Footer() {
               <span className="text-lg font-semibold text-foreground">{t.footer.company}</span>
             </div>
             <p className="text-sm text-muted-foreground leading-relaxed">
-              Impulsando el crecimiento de PYMEs desde 2010
+              Impulsando el crecimiento  desde 2010
             </p>
           </div>
 

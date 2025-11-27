@@ -3,6 +3,7 @@ import { CTA } from "@/components/cta"
 import { Footer } from "@/components/footer"
 import { ScrollToTop } from "@/components/scroll-to-top"
 import { WhatsAppButton } from "@/components/whatsapp-button"
+import { ContactForm } from "@/components/contact-form"
 
 export default function ContactoPage() {
   return (
@@ -10,6 +11,7 @@ export default function ContactoPage() {
       <Header />
       <div className="pt-16">
         <CTA />
+        <ContactForm />
       </div>
       <Footer />
       <ScrollToTop />
