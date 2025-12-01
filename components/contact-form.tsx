@@ -1,45 +1,54 @@
-"use client"
+"use client";
 
-import { useState, useRef } from "react"
+import { useState, useRef } from "react";
 
 export function ContactForm() {
-  const [loading, setLoading] = useState(false)
-  const [success, setSuccess] = useState(false)
-  const [error, setError] = useState(false)
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState(false);
 
-  const formRef = useRef<HTMLFormElement>(null)
+  const formRef = useRef<HTMLFormElement>(null);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault()
-    setLoading(true)
-    setSuccess(false)
-    setError(false)
+    e.preventDefault();
+    setLoading(true);
+    setSuccess(false);
+    setError(false);
 
-    const formData = new FormData(e.currentTarget)
+    const formData = new FormData(e.currentTarget);
+
     const data = {
-      nombre: formData.get("nombre"),
-      email: formData.get("email"),
-      mensaje: formData.get("mensaje"),
-    }
+      nombre: String(formData.get("nombre")),
+      email: String(formData.get("email")),
+      mensaje: String(formData.get("mensaje")),
+    };
 
-    const res = await fetch("/api/contact", {
+    const res = await fetch("/api/email", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
-    })
+      body: JSON.stringify({
+        nombre: data.nombre,
+        email: data.email,
+        mensaje: data.mensaje,
+      }),
+    });
 
-    setLoading(false)
+    setLoading(false);
 
     if (res.ok) {
-      setSuccess(true)
-      formRef.current?.reset() // ← ESTA ES LA PARTE QUE SOLUCIONA EL ERROR
+      setSuccess(true);
+      formRef.current?.reset();
     } else {
-      setError(true)
+      setError(true);
     }
   }
 
   return (
-    <form ref={formRef} onSubmit={handleSubmit} className="max-w-xl mx-auto p-6 space-y-4">
+    <form
+      ref={formRef}
+      onSubmit={handleSubmit}
+      className="max-w-xl mx-auto p-6 space-y-4"
+    >
       <h2 className="text-2xl font-semibold mb-4">Enviar consulta</h2>
 
       <input
@@ -86,5 +95,5 @@ export function ContactForm() {
         </p>
       )}
     </form>
-  )
+  );
 }
