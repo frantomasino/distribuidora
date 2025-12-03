@@ -12,6 +12,7 @@ export default function ContactoPage() {
       <div className="pt-16">
         <CTA />
         <ContactForm />
+
       </div>
       <Footer />
       <ScrollToTop />

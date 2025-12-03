@@ -38,6 +38,12 @@ export function ContactForm() {
     if (res.ok) {
       setSuccess(true);
       formRef.current?.reset();
+
+      // 🔥 Ocultar mensaje después de 3 segundos
+      setTimeout(() => {
+        setSuccess(false);
+      }, 3000);
+
     } else {
       setError(true);
     }
