@@ -6,6 +6,7 @@ export function ContactForm() {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
+  const [showMessage, setShowMessage] = useState(false);
 
   const formRef = useRef<HTMLFormElement>(null);
 
@@ -14,6 +15,7 @@ export function ContactForm() {
     setLoading(true);
     setSuccess(false);
     setError(false);
+    setShowMessage(false);
 
     const formData = new FormData(e.currentTarget);
 
@@ -39,13 +41,21 @@ export function ContactForm() {
       setSuccess(true);
       formRef.current?.reset();
 
-      // 🔥 Ocultar mensaje después de 3 segundos
+      // Mostrar mensaje (fade-in)
+      setShowMessage(true);
+
+      // Ocultarlo después de 3 segundos (fade-out)
       setTimeout(() => {
-        setSuccess(false);
+        setShowMessage(false);
       }, 3000);
 
     } else {
       setError(true);
+
+      setShowMessage(true);
+      setTimeout(() => {
+        setShowMessage(false);
+      }, 3000);
     }
   }
 
@@ -89,17 +99,24 @@ export function ContactForm() {
         {loading ? "Enviando..." : "Enviar"}
       </button>
 
-      {success && (
-        <p className="text-green-600 font-medium">
-          Tu mensaje fue enviado correctamente ✔️
-        </p>
-      )}
+      {/* Fade-in / Fade-out del mensaje */}
+      <div
+        className={`transition-opacity duration-500 ${
+          showMessage ? "opacity-100" : "opacity-0"
+        }`}
+      >
+        {success && (
+          <p className="text-green-600 font-medium">
+            Tu mensaje fue enviado correctamente ✔️
+          </p>
+        )}
 
-      {error && (
-        <p className="text-red-600 font-medium">
-          Ocurrió un error al enviar el mensaje ❌
-        </p>
-      )}
+        {error && (
+          <p className="text-red-600 font-medium">
+            Ocurrió un error al enviar el mensaje ❌
+          </p>
+        )}
+      </div>
     </form>
   );
 }
